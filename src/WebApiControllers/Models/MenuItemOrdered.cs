@@ -1,4 +1,5 @@
-﻿namespace WebApiControllers; 
+﻿namespace WebApiControllers.Models;
+
 public class MenuItemOrdered {
     public MenuItemOrdered() { }
     public MenuItemOrdered BuildFromMenuItem(MenuItem item, int togoOrderId) => new MenuItemOrdered {

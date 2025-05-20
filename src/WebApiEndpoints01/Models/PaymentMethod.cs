@@ -1,4 +1,4 @@
-﻿namespace WebApiEndpoints01; 
+﻿namespace WebApiEndpoints01.Models; 
 public enum PaymentMethod {
     CreditCard,
     Cash,

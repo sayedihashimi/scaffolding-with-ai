@@ -1,4 +1,4 @@
-﻿namespace RazorPages01; 
+﻿namespace RazorPages01.Models; 
 public enum PaymentMethod {
     CreditCard,
     Cash,

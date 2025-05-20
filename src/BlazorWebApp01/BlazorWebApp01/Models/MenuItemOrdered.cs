@@ -1,4 +1,4 @@
-﻿namespace BlazorWebApp01; 
+﻿namespace BlazorWebApp01.Models; 
 public class MenuItemOrdered {
     public MenuItemOrdered() { }
     public MenuItemOrdered BuildFromMenuItem(MenuItem item, int togoOrderId) => new MenuItemOrdered {

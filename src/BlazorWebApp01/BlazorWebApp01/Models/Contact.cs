@@ -1,4 +1,4 @@
-﻿namespace BlazorWebApp01; 
+﻿namespace BlazorWebApp01.Models; 
 public class Contact {
     public int Id { get; set; }
     public string? Name { get; set; }

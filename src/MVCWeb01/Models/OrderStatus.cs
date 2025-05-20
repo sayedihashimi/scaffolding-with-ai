@@ -1,4 +1,4 @@
-﻿namespace MVCWeb01; 
+﻿namespace MVCWeb01.Models; 
 public enum OrderStatus {
     Submitted,
     InProgress,

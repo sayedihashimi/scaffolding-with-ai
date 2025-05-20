@@ -1,4 +1,4 @@
-﻿namespace RazorPages01; 
+﻿namespace RazorPages01.Models; 
 public enum MenuItemCategory {
     Breakfast = 0,
     Lunch = 1,

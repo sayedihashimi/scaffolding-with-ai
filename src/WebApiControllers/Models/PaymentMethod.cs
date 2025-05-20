@@ -1,4 +1,5 @@
-﻿namespace WebApiControllers; 
+﻿namespace WebApiControllers.Models;
+
 public enum PaymentMethod {
     CreditCard,
     Cash,

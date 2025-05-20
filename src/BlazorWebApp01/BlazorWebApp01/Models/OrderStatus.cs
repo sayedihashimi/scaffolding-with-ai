@@ -1,4 +1,4 @@
-﻿namespace BlazorWebApp01; 
+﻿namespace BlazorWebApp01.Models; 
 public enum OrderStatus {
     Submitted,
     InProgress,

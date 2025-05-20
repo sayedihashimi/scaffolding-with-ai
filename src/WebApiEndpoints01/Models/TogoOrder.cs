@@ -1,4 +1,4 @@
-﻿namespace WebApiEndpoints01; 
+﻿namespace WebApiEndpoints01.Models; 
 public class TogoOrder {
     public int Id { get; set; }
     public DateTime? OrderCreated { get; set; }
