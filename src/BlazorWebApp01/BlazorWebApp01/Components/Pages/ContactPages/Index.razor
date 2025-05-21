@@ -1,0 +1,38 @@
+﻿@page "/contacts"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using BlazorWebApp01.Models
+@using BlazorWebApp01.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<BlazorWebApp01.Data.BlazorWebApp01Context> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="contacts/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Contact">
+    <PropertyColumn Property="contact => contact.Name" />
+    <PropertyColumn Property="contact => contact.Email" />
+    <PropertyColumn Property="contact => contact.Phone" />
+
+    <TemplateColumn Context="contact">
+        <a href="@($"contacts/edit?id={contact.Id}")">Edit</a> |
+        <a href="@($"contacts/details?id={contact.Id}")">Details</a> |
+        <a href="@($"contacts/delete?id={contact.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private BlazorWebApp01Context context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
