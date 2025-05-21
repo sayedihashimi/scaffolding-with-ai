@@ -4,3 +4,31 @@ GET {{WebApiControllers_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+GET {{WebApiControllers_HostAddress}}/api/Contacts
+
+###
+POST {{WebApiControllers_HostAddress}}/api/Contacts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane.doe@example.com",
+  "phone": "+1-555-123-4567"
+}
+
+###
+GET {{WebApiControllers_HostAddress}}/api/Contacts/1
+###
+PUT {{WebApiControllers_HostAddress}}/api/Contacts/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 1,
+  "name": "Jane Doe",
+  "email": "jane.doe@example.com",
+  "phone": "+1-555-987-6543"
+}
+
+###

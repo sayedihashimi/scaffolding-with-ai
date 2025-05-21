@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiControllers {
     public class Program {
@@ -7,6 +8,8 @@ namespace WebApiControllers {
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
