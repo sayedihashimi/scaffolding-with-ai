@@ -1,0 +1,56 @@
+@page "/components/pages/contacts/index"
+@using BlazorWebApp01.Models
+@using Microsoft.EntityFrameworkCore
+@inject ApplicationDbContext DbContext
+
+<PageTitle>Contacts</PageTitle>
+
+<h3>Contacts</h3>
+
+<a href="/components/pages/contacts/create" class="btn btn-primary mb-3">Create New Contact</a>
+
+@if (contacts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!contacts.Any())
+{
+    <p>No contacts found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var contact in contacts)
+        {
+            <tr>
+                <td>@contact.Name</td>
+                <td>@contact.Email</td>
+                <td>@contact.Phone</td>
+                <td>
+                    <a href="/components/pages/contacts/details/@contact.Id" class="btn btn-link">Details</a>
+                    <a href="/components/pages/contacts/edit/@contact.Id" class="btn btn-link">Edit</a>
+                    <a href="/components/pages/contacts/delete/@contact.Id" class="btn btn-link text-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Contact>? contacts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        contacts = await DbContext.Contacts.ToListAsync();
+    }
+}

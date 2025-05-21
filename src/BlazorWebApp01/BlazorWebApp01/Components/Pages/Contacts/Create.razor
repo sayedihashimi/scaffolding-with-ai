@@ -1,0 +1,41 @@
+@page "/components/pages/contacts/create"
+@using BlazorWebApp01.Models
+@inject ApplicationDbContext DbContext
+@inject NavigationManager Navigation
+
+<PageTitle>Create Contact</PageTitle>
+
+<h3>Create Contact</h3>
+
+<EditForm method="post" Model="contact" OnValidSubmit="HandleValidSubmit" FormName="create" Enhance>
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <InputText id="Name" class="form-control" @bind-Value="contact.Name" />
+        <ValidationMessage For="() => contact.Name" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <InputText id="Email" class="form-control" @bind-Value="contact.Email" />
+        <ValidationMessage For="() => contact.Email" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label for="Phone" class="form-label">Phone</label>
+        <InputText id="Phone" class="form-control" @bind-Value="contact.Phone" />
+        <ValidationMessage For="() => contact.Phone" class="text-danger" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a href="/components/pages/contacts/index" class="btn btn-secondary ms-2">Cancel</a>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private Contact contact { get; set; } = new();
+
+    private async Task HandleValidSubmit()
+    {
+        DbContext.Contacts.Add(contact);
+        await DbContext.SaveChangesAsync();
+        Navigation.NavigateTo("/components/pages/contacts/index");
+    }
+}
