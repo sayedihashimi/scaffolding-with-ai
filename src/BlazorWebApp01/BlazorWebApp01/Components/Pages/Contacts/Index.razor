@@ -1,0 +1,55 @@
+@* Index.razor: List and navigation for Contacts *@
+@page "/contacts"
+@using BlazorWebApp01.Models
+@inject ApplicationDbContext Db
+
+<PageTitle>Contacts</PageTitle>
+
+<h3>Contacts</h3>
+<a href="/contacts/create" class="btn btn-primary mb-2">Create New Contact</a>
+
+@if (contacts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!contacts.Any())
+{
+    <p>No contacts found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var contact in contacts)
+        {
+            <tr>
+                <td>@contact.Name</td>
+                <td>@contact.Email</td>
+                <td>@contact.Phone</td>
+                <td>
+                    <a href="/contacts/details/@contact.Id" class="btn btn-info btn-sm">Details</a>
+                    <a href="/contacts/edit/@contact.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/contacts/delete/@contact.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Contact>? contacts;
+
+    protected override void OnInitialized()
+    {
+        contacts = Db.Contacts.ToList();
+    }
+}

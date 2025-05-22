@@ -1,0 +1,51 @@
+@* Delete.razor: Delete Contact *@
+@page "/contacts/delete/{Id:int}"
+@using BlazorWebApp01.Models
+@inject ApplicationDbContext Db
+@inject NavigationManager Navigation
+
+<PageTitle>Delete Contact</PageTitle>
+
+<h3>Delete Contact</h3>
+
+@if (contact == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <dl class="row">
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@contact.Name</dd>
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@contact.Email</dd>
+        <dt class="col-sm-2">Phone</dt>
+        <dd class="col-sm-10">@contact.Phone</dd>
+    </dl>
+    <EditForm method="post" Model="contact" OnValidSubmit="DeleteContact" FormName="delete" Enhance>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="/contacts" class="btn btn-secondary ms-2">Cancel</a>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    [SupplyParameterFromForm]
+    private Contact? contact { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        contact = await Db.Contacts.FindAsync(Id);
+    }
+
+    private async Task DeleteContact()
+    {
+        if (contact != null)
+        {
+            Db.Contacts.Remove(contact);
+            await Db.SaveChangesAsync();
+            Navigation.NavigateTo("/contacts");
+        }
+    }
+}
