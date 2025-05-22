@@ -139,7 +139,7 @@ function PrintDataRazorPages{
 - EfProviderPackage: Microsoft.EntityFrameworkCore.Sqlite
 - DbContextClass: ApplicationDbContext
 - OutputPath: {0}/Pages/Contacts
-- ScaffoldType: Controller
+- ScaffoldType: RazorPages
 - MigrationName: InitialCreate
 - GenerateCrudOperations: Create, Read, Update, Delete and Details
 - RequiresValidation: true
