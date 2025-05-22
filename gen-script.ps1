@@ -168,7 +168,7 @@ $projectName = 'WebApiControllers'
 - EfProviderPackage: Microsoft.EntityFrameworkCore.Sqlite
 - DbContextClass: ApplicationDbContext
 - OutputPath: {0}/Controllers/Contacts
-- ScaffoldType: Controller
+- ScaffoldType: ApiController
 - MigrationName: InitialCreate
 - GenerateCrudOperations: Create, Read, Update, Delete and Details
 - RequiresValidation: true
