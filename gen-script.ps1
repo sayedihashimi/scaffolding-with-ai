@@ -230,6 +230,7 @@ Initalize
 $projectType = (PromptForProjectType)['userprompt']
 
 'Project type: "{0}"' -f $projectType | Write-Output
+"" | Write-Output
 CheckForQuit -promptResult $projectType
 
 PrintPromptDataForProject -projectType $projectType
