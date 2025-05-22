@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using WebApiEndpoints01.Models;
+using WebApiEndpoints01.Api;
 
 namespace WebApiEndpoints01 {
     public class Program {
@@ -6,6 +10,11 @@ namespace WebApiEndpoints01 {
 
             // Add services to the container.
             builder.Services.AddAuthorization();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=contacts.db"));
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
@@ -15,6 +24,8 @@ namespace WebApiEndpoints01 {
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment()) {
                 app.MapOpenApi();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
@@ -37,6 +48,9 @@ namespace WebApiEndpoints01 {
                 return forecast;
             })
             .WithName("GetWeatherForecast");
+
+            // Register endpoints from ContactEndpoints
+            ContactEndpoints.Register(app);
 
             app.Run();
         }

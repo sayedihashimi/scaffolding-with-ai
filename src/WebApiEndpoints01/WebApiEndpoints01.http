@@ -1,6 +1,35 @@
-@WebApiEndpoints01_HostAddress = http://localhost:5115
+@WebApiEndpoints01_HostAddress = https://localhost:7105
 
 GET {{WebApiEndpoints01_HostAddress}}/weatherforecast/
 Accept: application/json
+
+###
+
+GET {{WebApiEndpoints01_HostAddress}}/api/Contacts
+
+###
+POST {{WebApiEndpoints01_HostAddress}}/api/Contacts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane.doe@example.com",
+  "phone": "+1-555-123-4567"
+}
+
+###
+GET {{WebApiEndpoints01_HostAddress}}/api/Contacts/1
+###
+PUT {{WebApiEndpoints01_HostAddress}}/api/Contacts/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 1,
+  "name": "Jane Doe",
+  "email": "jane.doe@example.com",
+  "phone": "+1-555-987-6543"
+}
 
 ###
