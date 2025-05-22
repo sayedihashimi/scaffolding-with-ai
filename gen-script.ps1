@@ -71,6 +71,7 @@ function PrintDataBlazor{
         $projectName = 'BlazorWebApp01'
 
         $data = @'
+# Data:        
 - ProjectName: {0}
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
@@ -99,6 +100,7 @@ function PrintDataMVC{
         $projectName = 'MVCWeb01'
 
         $data = @'
+# Data:
 - ProjectName: {0}
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
@@ -127,6 +129,7 @@ function PrintDataRazorPages{
         $projectName = 'RazorPages01'
 
         $data = @'
+# Data:
 - ProjectName: {0}
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
@@ -155,6 +158,7 @@ function PrintDataApiControllers{
 $projectName = 'WebApiControllers'
 
         $data = @'
+# Data:
 - ProjectName: {0}
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
@@ -183,6 +187,7 @@ function PrintDataApiEndpoints{
         $projectName = 'WebApiEndpoints01'
 
         $data = @'
+# Data:
 - ProjectName: {0}
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
