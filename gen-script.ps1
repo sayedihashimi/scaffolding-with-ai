@@ -73,6 +73,7 @@ function PrintDataBlazor{
         $data = @'
 # Data:        
 - ProjectName: {0}
+- ProjectFilePath: {0}/{0}.csproj
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
 - ModelPluralName: Contacts
@@ -102,6 +103,7 @@ function PrintDataMVC{
         $data = @'
 # Data:
 - ProjectName: {0}
+- ProjectFilePath: {0}/{0}.csproj
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
 - ModelPluralName: Contacts
@@ -131,6 +133,7 @@ function PrintDataRazorPages{
         $data = @'
 # Data:
 - ProjectName: {0}
+- ProjectFilePath: {0}/{0}.csproj
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
 - ModelPluralName: Contacts
@@ -160,6 +163,7 @@ $projectName = 'WebApiControllers'
         $data = @'
 # Data:
 - ProjectName: {0}
+- ProjectFilePath: {0}/{0}.csproj
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
 - ModelPluralName: Contacts
@@ -189,6 +193,7 @@ function PrintDataApiEndpoints{
         $data = @'
 # Data:
 - ProjectName: {0}
+- ProjectFilePath: {0}/{0}.csproj
 - ModelName: Contact
 - ModelFilePath: {0}/Models/Contact.cs
 - ModelPluralName: Contacts
@@ -197,7 +202,7 @@ function PrintDataApiEndpoints{
 - EfProviderPackage: Microsoft.EntityFrameworkCore.Sqlite
 - DbContextClass: ApplicationDbContext
 - OutputPath: {0}/Api/Contacts
-- ScaffoldType: Controller
+- ScaffoldType: ApiEndpoints
 - ApiEndpointFilePath: WebApiEndpoints01/Api/ContactEndpoints.cs
 - MigrationName: InitialCreate
 - GenerateCrudOperations: Create, Read, Update, Delete and Details
