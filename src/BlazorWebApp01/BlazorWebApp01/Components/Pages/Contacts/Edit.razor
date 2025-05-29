@@ -1,0 +1,59 @@
+@* Edit.razor: Edit Contact *@
+@page "/contacts/edit/{Id:int}"
+@using BlazorWebApp01.Models
+@inject ApplicationDbContext Db
+@inject NavigationManager Navigation
+
+<PageTitle>Edit Contact</PageTitle>
+
+<h3>Edit Contact</h3>
+
+@if (contact == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm method="post" Model="contact" OnValidSubmit="UpdateContact" FormName="edit" Enhance>
+        <div class="mb-3">
+            <label>Name</label>
+            <InputText class="form-control" @bind-Value="contact.Name" />
+            <ValidationMessage For="() => contact.Name" class="text-danger" />
+        </div>
+        <div class="mb-3">
+            <label>Email</label>
+            <InputText class="form-control" @bind-Value="contact.Email" />
+            <ValidationMessage For="() => contact.Email" class="text-danger" />
+        </div>
+        <div class="mb-3">
+            <label>Phone</label>
+            <InputText class="form-control" @bind-Value="contact.Phone" />
+            <ValidationMessage For="() => contact.Phone" class="text-danger" />
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/contacts" class="btn btn-secondary ms-2">Cancel</a>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Contact? contact { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        contact = await Db.Contacts.FindAsync(Id);
+    }
+
+    private async Task UpdateContact()
+    {
+        if (contact != null)
+        {
+            Db.Contacts.Update(contact);
+            await Db.SaveChangesAsync();
+            Navigation.NavigateTo("/contacts");
+        }
+    }
+}

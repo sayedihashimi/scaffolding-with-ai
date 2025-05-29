@@ -1,5 +1,6 @@
 using BlazorWebApp01.Client.Pages;
 using BlazorWebApp01.Components;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorWebApp01 {
     public class Program {
@@ -10,6 +11,10 @@ namespace BlazorWebApp01 {
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
+
+            // Add ApplicationDbContext with SQLite
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=app.db"));
 
             var app = builder.Build();
 

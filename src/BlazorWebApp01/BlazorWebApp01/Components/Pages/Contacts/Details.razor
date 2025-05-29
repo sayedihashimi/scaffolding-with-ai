@@ -1,0 +1,37 @@
+@* Details.razor: View Contact Details *@
+@page "/contacts/details/{Id:int}"
+@using BlazorWebApp01.Models
+@inject ApplicationDbContext Db
+
+<PageTitle>Contact Details</PageTitle>
+
+<h3>Contact Details</h3>
+
+@if (contact == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <dl class="row">
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@contact.Name</dd>
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@contact.Email</dd>
+        <dt class="col-sm-2">Phone</dt>
+        <dd class="col-sm-10">@contact.Phone</dd>
+    </dl>
+    <a href="/contacts/edit/@contact.Id" class="btn btn-warning">Edit</a>
+    <a href="/contacts" class="btn btn-secondary ms-2">Back to List</a>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private Contact? contact;
+
+    protected override async Task OnInitializedAsync()
+    {
+        contact = await Db.Contacts.FindAsync(Id);
+    }
+}
