@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RazorPages01.Data;
+
 namespace RazorPages01
 {
     public class Program
@@ -8,6 +11,10 @@ namespace RazorPages01
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            // Add Entity Framework
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
